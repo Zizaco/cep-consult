@@ -1,0 +1,21 @@
+{
+    "name": "zizaco/cep-consult",
+    "description": "This package has the objective to consult the CEP within one or more web APIs that will retrieve the address of the given number.",
+    "keywords": ["cep","brazil","laravel"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zizaco Zizuini",
+            "email": "zizaco@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Zizaco\\CepConsult": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
