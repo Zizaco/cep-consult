@@ -25,14 +25,14 @@ In your `config/app.php` add `'Zizaco\CepConsult\ServiceProvider'` to the end of
 
     ),
 
-Then at the end of `config/app.php` add `'MongoLid'    => 'Zizaco\CepConsult\Facade'` to the `$aliases` array
+Then at the end of `config/app.php` add `'CepConsult'    => 'Zizaco\CepConsult\Facade'` to the `$aliases` array
 
     'aliases' => array(
 
         'App'        => 'Illuminate\Support\Facades\App',
         'Artisan'    => 'Illuminate\Support\Facades\Artisan',
         ...
-        'MongoLid'    => 'Zizaco\CepConsult\Facade',
+        'CepConsult'    => 'Zizaco\CepConsult\Facade',
 
     ),
 
