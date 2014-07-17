@@ -16,7 +16,7 @@ Consultas disponíveis:
 
 In the `require` key of `composer.json` file add the following
 
-    "cagartner/corrreios-consulta": "dev-master"
+    "cagartner/correios-consulta": "dev-master"
 
 Run the Composer update comand
 
