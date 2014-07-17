@@ -1,4 +1,4 @@
-<?php namespace Zizaco\CepConsult;
+<?php namespace Cagartner\CorreiosConsulta;
 
 use Illuminate\Support\Facades\Facade as BaseFacade;
 
@@ -6,6 +6,6 @@ class Facade extends BaseFacade
 {
     protected static function getFacadeAccessor()
     {
-        return 'consulta_cep';
+        return 'correios_consulta';
     }
 }

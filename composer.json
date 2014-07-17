@@ -1,20 +1,21 @@
 {
-    "name": "zizaco/cep-consult",
-    "description": "This package has the objective to consult the CEP within one or more web APIs that will retrieve the address of the given number.",
-    "keywords": ["cep","brazil","laravel"],
+    "name": "cagartner/correios-consulta",
+    "description": "Package para pesquisa de serviços de busca por cep, calculo de frete e etc, diretamente nos serviços dos Correios.",
+    "keywords": ["cep","brazil","laravel","frete"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Zizaco Zizuini",
-            "email": "zizaco@gmail.com"
+            "name": "Carlos A. Gartner",
+            "email": "contato@carlosgartner.com.br"
         }
     ],
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.0",
+        "wittiws/phpquery": "dev-master"
     },
     "autoload": {
         "psr-0": {
-            "Zizaco\\CepConsult": "src/"
+            "Cagartner\\CorreiosConsulta": "src/"
         }
     },
     "minimum-stability": "dev"
