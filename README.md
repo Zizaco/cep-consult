@@ -16,7 +16,6 @@ Consultas disponíveis:
 
 In the `require` key of `composer.json` file add the following
 
-    "wittiws/phpquery": "dev-master",
     "cagartner/correios-consulta": "dev-master"
 
 Run the Composer update comand
