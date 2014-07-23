@@ -33,7 +33,7 @@ In your `config/app.php` add `'Cagartner\CorreiosConsulta\ServiceProvider'` to t
 
     ),
 
-Then at the end of `config/app.php` add `'CepConsult'    => 'Zizaco\CepConsult\Facade'` to the `$aliases` array
+Then at the end of `config/app.php` add `'Correios'    => 'Cagartner\CorreiosConsulta\Facade'` to the `$aliases` array
 
     'aliases' => array(
 
