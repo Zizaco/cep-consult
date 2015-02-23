@@ -1,4 +1,4 @@
-# CorreiosConsulta (Laravel 4 Package)
+# CorreiosConsulta (Laravel 4/5 Package)
 
 ----------------------
 Package para consulta de serviços diretamente no site dos correios, sem usar apis de terceiros.
