@@ -1,11 +1,59 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "61e2727bef9bd0c7e77583b545f3b26e",
+    "hash": "e96a4d709125d001579537a75cee44e3",
     "packages": [
+        {
+            "name": "cagartner/phpquery",
+            "version": "0.9.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cagartner/phpquery.git",
+                "reference": "b05a099ba9db1fb158056672b8d9e46b5245e627"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cagartner/phpquery/zipball/b05a099ba9db1fb158056672b8d9e46b5245e627",
+                "reference": "b05a099ba9db1fb158056672b8d9e46b5245e627",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "sabberworm/php-css-parser": "5.1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpQuery\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tobiasz Cudnik",
+                    "email": "tobiasz.cudnik@gmail.com",
+                    "homepage": "https://github.com/TobiaszCudnik",
+                    "role": "Developer"
+                },
+                {
+                    "name": "didier Belot",
+                    "role": "Packager"
+                },
+                {
+                    "name": "Greg Payne",
+                    "role": "Packager"
+                }
+            ],
+            "description": "PHP5.3+ namespaced version of phpQuery with enhanced CSS support",
+            "homepage": "http://code.google.com/p/phpquery/",
+            "time": "2014-07-18 16:15:43"
+        },
         {
             "name": "sabberworm/php-css-parser",
             "version": "5.1.2",
@@ -46,62 +94,14 @@
                 "stylesheet"
             ],
             "time": "2014-04-24 18:00:51"
-        },
-        {
-            "name": "wittiws/phpquery",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wittiws/phpquery.git",
-                "reference": "1ad933aa9381a6897e080af9aad2930a5dfc3839"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wittiws/phpquery/zipball/1ad933aa9381a6897e080af9aad2930a5dfc3839",
-                "reference": "1ad933aa9381a6897e080af9aad2930a5dfc3839",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "sabberworm/php-css-parser": "5.1.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "PhpQuery\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Tobiasz Cudnik",
-                    "email": "tobiasz.cudnik@gmail.com",
-                    "homepage": "https://github.com/TobiaszCudnik",
-                    "role": "Developer"
-                },
-                {
-                    "name": "didier Belot",
-                    "role": "Packager"
-                },
-                {
-                    "name": "Greg Payne",
-                    "role": "Packager"
-                }
-            ],
-            "description": "PHP5.3+ namespaced version of phpQuery with enhanced CSS support",
-            "homepage": "http://code.google.com/p/phpquery/",
-            "time": "2014-07-10 16:07:41"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "wittiws/phpquery": 20
-    },
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.3.0"
     },

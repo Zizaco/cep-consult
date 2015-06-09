@@ -12,9 +12,9 @@ print_r($consulta->cep('89062086'));
 echo "</pre>";
 echo "<hr>";
 
-echo "<h1>Rastrear: AA123456789BR</h1>";
+echo "<h1>Rastrear: PI464134876BR</h1>";
 echo "<pre>";
-print_r($consulta->rastrear('AA123456789BR'));
+print_r($consulta->rastrear('PI464134876BR'));
 echo "</pre>";
 echo "<hr>";
 
