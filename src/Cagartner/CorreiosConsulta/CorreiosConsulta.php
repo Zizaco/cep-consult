@@ -15,7 +15,9 @@ class CorreiosConsulta
             'sedex_a_cobrar' => '40045',
             'sedex_10'       => '40215',
             'sedex_hoje'     => '40290',
-            'pac'            => '41106'
+            'pac'            => '41106',
+            'pac_contrato'   => '41068',
+            'sedex_contrato' => '40096',
         );
 
         $formatos = array(
