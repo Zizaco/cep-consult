@@ -156,6 +156,9 @@ class CorreiosConsulta
         foreach(phpQuery::pq('tr') as $tr){$c++;
             if(count(phpQuery::pq($tr)->find('td')) == 3 && $c > 1)
                 $rastreamento[] = array('data'=>phpQuery::pq($tr)->find('td:eq(0)')->text(),'local'=>phpQuery::pq($tr)->find('td:eq(1)')->text(),'status'=>phpQuery::pq($tr)->find('td:eq(2)')->text());
+
+            if(count(phpQuery::pq($tr)->find('td')) == 1 && $c > 1)
+                $rastreamento[count($rastreamento)-1]['encaminhado'] = phpQuery::pq($tr)->find('td:eq(0)')->text();
         }
 
         if(!count($rastreamento))

@@ -76,7 +76,7 @@ Passar o código de rastreio informado pelos Correios
 
 ~~~
 <?php
-    echo Correios::rastrear('AA123456789BR');
+    echo Correios::rastrear('PI464134876BR');
     
     /*
         Retorno:
@@ -84,16 +84,39 @@ Passar o código de rastreio informado pelos Correios
         (
             [0] => Array
                 (
-                    [data] => 16/04/2014 18:56
-                    [local] => CDD ITAPETININGA - ITAPETININGA/SP
+                    [data] => 08/06/2015 14:47
+                    [local] => CDD CARAGUATATUBA - Caraguatatuba/SP
                     [status] => Entrega Efetuada
                 )
 
             [1] => Array
                 (
-                    [data] => 16/04/2014 09:14
-                    [local] => CDD ITAPETININGA - ITAPETININGA/SP
-                    [status] => Â 
+                    [data] => 08/06/2015 07:59
+                    [local] => Caraguatatuba/SP
+                    [status] => Saiu para entrega ao destinatário
+                )
+
+            [2] => Array
+                (
+                    [data] => 03/06/2015 11:48
+                    [local] => CTE SAO JOSE DOS CAMPOS - Sao Jose Dos Campos/SP
+                    [status] => Encaminhado
+                    [encaminhado] => Em trânsito para CDD CARAGUATATUBA - Caraguatatuba/SP
+                )
+
+            [3] => Array
+                (
+                    [data] => 02/06/2015 10:00
+                    [local] => AGF DOUTOR JOAO MENDES - Sao Paulo/SP
+                    [status] => Encaminhado
+                    [encaminhado] => Em trânsito para CTE VILA MARIA - Sao Paulo/SP
+                )
+
+            [4] => Array
+                (
+                    [data] => 01/06/2015 14:56
+                    [local] => AGF DOUTOR JOAO MENDES - Sao Paulo/SP
+                    [status] => Postado
                 )
 
         )
