@@ -18,6 +18,7 @@ class CorreiosConsulta
             'pac'            => '41106',
             'pac_contrato'   => '41068',
             'sedex_contrato' => '40096',
+            'esedex'         => '81019',
         );
 
         $formatos = array(

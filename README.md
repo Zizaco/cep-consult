@@ -130,7 +130,7 @@ Passar o código de rastreio informado pelos Correios
  ~~~
 <?php
     $dados = [
-        'tipo'              => 'sedex', // opções: `sedex`, `sedex_a_cobrar`, `sedex_10`, `sedex_hoje`, `pac`
+        'tipo'              => 'sedex', // opções: `sedex`, `sedex_a_cobrar`, `sedex_10`, `sedex_hoje`, `pac`, 'pac_contrato', 'sedex_contrato' , 'esedex'
         'formato'           => 'caixa', // opções: `caixa`, `rolo`, `envelope`
         'cep_destino'       => '89062086', // Obrigatório
         'cep_origem'        => '89062080', // Obrigatorio
