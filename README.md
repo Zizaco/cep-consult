@@ -50,7 +50,7 @@ Then at the end of `config/app.php` add `'Correios'    => 'Cagartner\CorreiosCon
 
 Passar apenas o valor do CEP, pode ser formatado, somente números e como string.
 
-~~~
+```php
 <?php
     echo Correios::cep('89062086');
     
@@ -68,13 +68,13 @@ Passar apenas o valor do CEP, pode ser formatado, somente números e como string
     */
 
 ?>
-~~~
+```
 
 #### Rastrear
 
 Passar o código de rastreio informado pelos Correios
 
-~~~
+```php
 <?php
     echo Correios::rastrear('PI464134876BR');
     
@@ -123,11 +123,11 @@ Passar o código de rastreio informado pelos Correios
     */
 
 ?>
-~~~
+```
 
 #### Cálculo de Frete:
 
- ~~~
+```php
 <?php
     $dados = [
         'tipo'              => 'sedex', // opções: `sedex`, `sedex_a_cobrar`, `sedex_10`, `sedex_hoje`, `pac`, 'pac_contrato', 'sedex_contrato' , 'esedex'
@@ -170,4 +170,4 @@ Passar o código de rastreio informado pelos Correios
     */
 
 ?>
-~~~
+```
