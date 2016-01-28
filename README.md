@@ -24,25 +24,29 @@ Run the Composer update comand
 
 In your `config/app.php` add `'Cagartner\CorreiosConsulta\ServiceProvider'` to the end of the `$providers` array
 
-    'providers' => array(
+```php
+'providers' => [
 
-        'Illuminate\Foundation\Providers\ArtisanServiceProvider',
-        'Illuminate\Auth\AuthServiceProvider',
-        ...
-        'Cagartner\CorreiosConsulta\ServiceProvider',
+    'Illuminate\Foundation\Providers\ArtisanServiceProvider',
+    'Illuminate\Auth\AuthServiceProvider',
+    // ...
+    'Cagartner\CorreiosConsulta\ServiceProvider',
 
-    ),
+],
+```
 
 Then at the end of `config/app.php` add `'Correios'    => 'Cagartner\CorreiosConsulta\Facade'` to the `$aliases` array
 
-    'aliases' => array(
+```php
+'aliases' => [
 
-        'App'        => 'Illuminate\Support\Facades\App',
-        'Artisan'    => 'Illuminate\Support\Facades\Artisan',
-        ...
-        'Correios'    => 'Cagartner\CorreiosConsulta\Facade',
+    'App'        => 'Illuminate\Support\Facades\App',
+    'Artisan'    => 'Illuminate\Support\Facades\Artisan',
+    // ...
+    'Correios'    => 'Cagartner\CorreiosConsulta\Facade',
 
-    ),
+],
+```
 
 ### Utilização
 
@@ -67,7 +71,6 @@ Passar apenas o valor do CEP, pode ser formatado, somente números e como string
         )
     */
 
-?>
 ```
 
 #### Rastrear
@@ -122,7 +125,6 @@ Passar o código de rastreio informado pelos Correios
         )
     */
 
-?>
 ```
 
 #### Cálculo de Frete:
@@ -169,5 +171,4 @@ Passar o código de rastreio informado pelos Correios
         )
     */
 
-?>
 ```
