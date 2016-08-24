@@ -6,7 +6,7 @@ use PhpQuery\PhpQuery as phpQuery;
 class CorreiosConsulta
 {
 
-    public function frete($dados)
+    public function frete($dados, $options = array())
     {
         $endpoint = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx?WSDL';
 
@@ -45,12 +45,14 @@ class CorreiosConsulta
         $dados['cep_destino'] = preg_replace("/[^0-9]/", '', $dados['cep_destino']);
         $dados['cep_origem']  = preg_replace("/[^0-9]/", '', $dados['cep_origem']);
 
-        $soap = new \SoapClient($endpoint, array(
+        $options = array_merge(array(
             'trace'              => true,
             'exceptions'         => true,
             'compression'        => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP,
             'connection_timeout' => 1000
-        ));
+        ), $options);
+        
+        $soap = new \SoapClient($endpoint, $options);
 
         $params = array(
             'nCdEmpresa'          => (isset($dados['empresa']) ? $dados['empresa'] : ''),
