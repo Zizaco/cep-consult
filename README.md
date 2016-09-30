@@ -7,6 +7,11 @@ Baseado nos seguintes repositórios:
 - https://github.com/feliperoberto/correios-cep
 - https://github.com/Zizaco/cep-consult
 
+Requerimentos:
+- Soap Client
+
+Para linux: `sudo apt-get install php-soap`
+
 Consultas disponíveis:
 - CEP
 - Frete
