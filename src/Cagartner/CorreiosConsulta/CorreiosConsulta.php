@@ -22,6 +22,15 @@ class CorreiosConsulta
         return self::$tipos;
     }
 
+    /**
+     * @param $valor string
+     * @return string
+     */
+    public static function getTipoIndex($valor)
+    {
+        return array_search($valor, self::getTipos());
+    }
+
     public function frete($dados, $options = array())
     {
         $endpoint = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx?WSDL';
