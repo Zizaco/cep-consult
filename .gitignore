@@ -1,1 +1,5 @@
-vendor/
+# Dependências
+/vendor/
+
+# IDE
+/.idea/

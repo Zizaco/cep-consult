@@ -6,20 +6,36 @@ use PhpQuery\PhpQuery as phpQuery;
 class CorreiosConsulta
 {
 
+    private static $tipos = array(
+        'sedex'          => '04014',
+        'sedex_a_cobrar' => '40045',
+        'sedex_10'       => '40215',
+        'sedex_hoje'     => '40290',
+        'pac'            => '04510',
+        'pac_contrato'   => '41068',
+        'sedex_contrato' => '40096',
+        'esedex'         => '81019',
+    );
+
+    public function getTipos()
+    {
+        return self::$tipos;
+    }
+
+    /**
+     * @param $valor string
+     * @return string
+     */
+    public static function getTipoIndex($valor)
+    {
+        return array_search($valor, self::getTipos());
+    }
+
     public function frete($dados, $options = array())
     {
         $endpoint = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx?WSDL';
 
-        $tipos = array(
-            'sedex'          => '04014',
-            'sedex_a_cobrar' => '40045',
-            'sedex_10'       => '40215',
-            'sedex_hoje'     => '40290',
-            'pac'            => '04510',
-            'pac_contrato'   => '41068',
-            'sedex_contrato' => '40096',
-            'esedex'         => '81019',
-        );
+        $tipos = self::getTipos();
 
         $formatos = array(
             'caixa'    => 1,
@@ -51,7 +67,7 @@ class CorreiosConsulta
             'compression'        => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP,
             'connection_timeout' => 1000
         ), $options);
-        
+
         $soap = new \SoapClient($endpoint, $options);
 
         $params = array(
