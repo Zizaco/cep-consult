@@ -6,14 +6,18 @@ use PhpQuery\PhpQuery as phpQuery;
 class CorreiosConsulta
 {
 
+    const FRETE_URL = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx?WSDL';
+    const CEP_URL = 'http://m.correios.com.br/movel/buscaCepConfirma.do';
+    const RASTREIO_URL = 'http://www2.correios.com.br/sistemas/rastreamento/resultado_semcontent.cfm';
+
     private static $tipos = array(
         'sedex'          => '04014',
         'sedex_a_cobrar' => '40045',
         'sedex_10'       => '40215',
         'sedex_hoje'     => '40290',
         'pac'            => '04510',
-        'pac_contrato'   => '41068',
-        'sedex_contrato' => '40096',
+        'pac_contrato'   => '04669',
+        'sedex_contrato' => '04162',
         'esedex'         => '81019',
     );
 
@@ -33,7 +37,7 @@ class CorreiosConsulta
 
     public function frete($dados, $options = array())
     {
-        $endpoint = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx?WSDL';
+        $endpoint = self::FRETE_URL;
 
         $tipos = self::getTipos();
 
@@ -87,7 +91,7 @@ class CorreiosConsulta
             'sCdAvisoRecebimento' => (isset($dados['aviso_recebimento']) && $dados['aviso_recebimento'] ? 'S' : 'N'),
             'sDtCalculo'          => date('d/m/Y'),
         );
-        //die(print_r($params,true));
+
         $CalcPrecoPrazoData = $soap->CalcPrecoPrazoData($params);
         $resultado          = $CalcPrecoPrazoData->CalcPrecoPrazoDataResult->Servicos->cServico;
 
@@ -126,7 +130,7 @@ class CorreiosConsulta
 
         $curl = new Curl;
 
-        $html = $curl->simple('http://m.correios.com.br/movel/buscaCepConfirma.do', $data);
+        $html = $curl->simple(self::CEP_URL, $data);
 
         phpQuery::newDocumentHTML($html, $charset = 'utf-8');
 
@@ -165,7 +169,7 @@ class CorreiosConsulta
     {
         $curl = new Curl;
 
-        $html = $curl->simple('http://www2.correios.com.br/sistemas/rastreamento/resultado_semcontent.cfm', array(
+        $html = $curl->simple(self::RASTREIO_URL, array(
             "Objetos" => $codigo
         ));
 
