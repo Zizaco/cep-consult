@@ -165,7 +165,9 @@ class CorreiosConsulta
     {
         $curl = new Curl;
 
-        $html = $curl->simple('http://websro.correios.com.br/sro_bin/txect01$.QueryList?P_LINGUA=001&P_TIPO=001&P_COD_UNI='.$codigo);
+        $html = $curl->simple('http://www2.correios.com.br/sistemas/rastreamento/resultado_semcontent.cfm', array(
+            "Objetos" => $codigo
+        ));
 
         phpQuery::newDocumentHTML($html, $charset = 'utf-8');
 
@@ -173,11 +175,16 @@ class CorreiosConsulta
         $c = 0;
 
         foreach(phpQuery::pq('tr') as $tr){$c++;
-            if(count(phpQuery::pq($tr)->find('td')) == 3 && $c > 1)
-                $rastreamento[] = array('data'=>phpQuery::pq($tr)->find('td:eq(0)')->text(),'local'=>phpQuery::pq($tr)->find('td:eq(1)')->text(),'status'=>phpQuery::pq($tr)->find('td:eq(2)')->text());
+            if(count(phpQuery::pq($tr)->find('td')) == 2){
+                list($data, $hora, $local) = explode("<br>", phpQuery::pq($tr)->find('td:eq(0)')->html() );
+                list($status, $encaminhado)= explode("<br>", phpQuery::pq($tr)->find('td:eq(1)')->html() );
 
-            if(count(phpQuery::pq($tr)->find('td')) == 1 && $c > 1)
-                $rastreamento[count($rastreamento)-1]['encaminhado'] = phpQuery::pq($tr)->find('td:eq(0)')->text();
+                $rastreamento[] = array('data'=>trim($data) . " " . trim($hora), 'local' => trim($local), 'status' => trim(strip_tags($status)));
+
+                if (trim($encaminhado)) {
+                    $rastreamento[count($rastreamento)-1]['encaminhado'] = trim($encaminhado);
+                }
+            }
         }
 
         if(!count($rastreamento))
