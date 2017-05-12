@@ -21,7 +21,7 @@ class CorreiosConsulta
         'esedex'         => '81019',
     );
 
-    public function getTipos()
+    public static function getTipos()
     {
         return self::$tipos;
     }
