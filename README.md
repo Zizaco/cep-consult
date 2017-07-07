@@ -1,9 +1,9 @@
 # CorreiosConsulta (Laravel 4/5 Package)
 
 ----------------------
-Package para consulta de serviÃ§os diretamente no site dos correios, sem usar apis de terceiros.
+Package para consulta de serviços diretamente no site dos correios, sem usar apis de terceiros.
 
-Baseado nos seguintes repositÃ³rios:
+Baseado nos seguintes repositórios:
 - https://github.com/feliperoberto/correios-cep
 - https://github.com/Zizaco/cep-consult
 
@@ -12,12 +12,12 @@ Requerimentos:
 
 Para linux: `sudo apt-get install php-soap`
 
-Consultas disponÃ­veis:
+Consultas disponíveis:
 - CEP
 - Frete
 - Rastreio
 
-### InstalaÃ§Ã£o
+### Instalação
 
 In the `require` key of `composer.json` file add the following
 
@@ -53,11 +53,11 @@ Then at the end of `config/app.php` add `'Correios'    => 'Cagartner\CorreiosCon
 ],
 ```
 
-### UtilizaÃ§Ã£o
+### Utilização
 
 #### CEP:
 
-Passar apenas o valor do CEP, pode ser formatado, somente nÃºmeros e como string.
+Passar apenas o valor do CEP, pode ser formatado, somente números e como string.
 
 ```php
 <?php
@@ -80,7 +80,7 @@ Passar apenas o valor do CEP, pode ser formatado, somente nÃºmeros e como string
 
 #### Rastrear
 
-Passar o cÃ³digo de rastreio informado pelos Correios
+Passar o código de rastreio informado pelos Correios
 
 ```php
 <?php
@@ -101,7 +101,7 @@ Passar o cÃ³digo de rastreio informado pelos Correios
                 (
                     [data] => 08/06/2015 07:59
                     [local] => Caraguatatuba/SP
-                    [status] => Saiu para entrega ao destinatÃ¡rio
+                    [status] => Saiu para entrega ao destinatário
                 )
 
             [2] => Array
@@ -109,7 +109,7 @@ Passar o cÃ³digo de rastreio informado pelos Correios
                     [data] => 03/06/2015 11:48
                     [local] => CTE SAO JOSE DOS CAMPOS - Sao Jose Dos Campos/SP
                     [status] => Encaminhado
-                    [encaminhado] => Em trÃ¢nsito para CDD CARAGUATATUBA - Caraguatatuba/SP
+                    [encaminhado] => Em trânsito para CDD CARAGUATATUBA - Caraguatatuba/SP
                 )
 
             [3] => Array
@@ -117,7 +117,7 @@ Passar o cÃ³digo de rastreio informado pelos Correios
                     [data] => 02/06/2015 10:00
                     [local] => AGF DOUTOR JOAO MENDES - Sao Paulo/SP
                     [status] => Encaminhado
-                    [encaminhado] => Em trÃ¢nsito para CTE VILA MARIA - Sao Paulo/SP
+                    [encaminhado] => Em trânsito para CTE VILA MARIA - Sao Paulo/SP
                 )
 
             [4] => Array
@@ -132,31 +132,31 @@ Passar o cÃ³digo de rastreio informado pelos Correios
 
 ```
 
-#### CÃ¡lculo de Frete:
+#### Cálculo de Frete:
 
 ```php
 <?php
     $dados = [
-        'tipo'              => 'sedex', // opÃ§Ãµes: `sedex`, `sedex_a_cobrar`, `sedex_10`, `sedex_hoje`, `pac`, 'pac_contrato', 'sedex_contrato' , 'esedex'
-        'formato'           => 'caixa', // opÃ§Ãµes: `caixa`, `rolo`, `envelope`
-        'cep_destino'       => '89062086', // ObrigatÃ³rio
+        'tipo'              => 'sedex', // Separar opções por vírgula (,) caso queira consultar mais de um (1) serviço. > Opções: `sedex`, `sedex_a_cobrar`, `sedex_10`, `sedex_hoje`, `pac`, 'pac_contrato', 'sedex_contrato' , 'esedex'
+        'formato'           => 'caixa', // opções: `caixa`, `rolo`, `envelope`
+        'cep_destino'       => '89062086', // Obrigatório
         'cep_origem'        => '89062080', // Obrigatorio
-        //'empresa'         => '', // CÃ³digo da empresa junto aos correios, nÃ£o obrigatÃ³rio.
-        //'senha'           => '', // Senha da empresa junto aos correios, nÃ£o obrigatÃ³rio.
+        //'empresa'         => '', // Código da empresa junto aos correios, não obrigatório.
+        //'senha'           => '', // Senha da empresa junto aos correios, não obrigatório.
         'peso'              => '1', // Peso em kilos
-        'comprimento'       => '16', // Em centÃ­metros
-        'altura'            => '11', // Em centÃ­metros
-        'largura'           => '11', // Em centÃ­metros
-        'diametro'          => '0', // Em centÃ­metros, no caso de rolo
-        // 'mao_propria'       => '1', // NÃ£o obrigatÃ³rios
-        // 'valor_declarado'   => '1', // NÃ£o obrigatÃ³rios
-        // 'aviso_recebimento' => '1', // NÃ£o obrigatÃ³rios
+        'comprimento'       => '16', // Em centímetros
+        'altura'            => '11', // Em centímetros
+        'largura'           => '11', // Em centímetros
+        'diametro'          => '0', // Em centímetros, no caso de rolo
+        // 'mao_propria'       => '1', // Não obrigatórios
+        // 'valor_declarado'   => '1', // Não obrigatórios
+        // 'aviso_recebimento' => '1', // Não obrigatórios
     ];
 
     echo Correios::frete($dados);
     
     /*
-        Retorno:
+        Retorno para uma única consulta:
         Array
         (
             [codigo] => 40010
@@ -172,7 +172,45 @@ Passar o cÃ³digo de rastreio informado pelos Correios
                     [codigo] => 0
                     [mensagem] => 
                 )
+        )
+    */
 
+    /*
+        Retorno para várias consultas:
+        Array
+        (
+            0 => Array
+            (
+                [codigo] => 4510
+                [valor] => 14.9
+                [prazo] => 1
+                [mao_propria] => 0
+                [aviso_recebimento] => 0
+                [valor_declarado] => 0
+                [entrega_domiciliar] => 1
+                [entrega_sabado] => 1
+                [erro] => Array
+                    (
+                        [codigo] => 0
+                        [mensagem] => 
+                    )
+            ),
+            1 => Array
+            (
+                [codigo] => 4014
+                [valor] => 14.9
+                [prazo] => 1
+                [mao_propria] => 0
+                [aviso_recebimento] => 0
+                [valor_declarado] => 0
+                [entrega_domiciliar] => 1
+                [entrega_sabado] => 1
+                [erro] => Array
+                    (
+                        [codigo] => 0
+                        [mensagem] => 
+                    )
+            )
         )
     */
 
