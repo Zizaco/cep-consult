@@ -18,5 +18,15 @@
             "Cagartner\\CorreiosConsulta": "src/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cagartner\\CorreiosConsulta\\ServiceProvider"
+            ],
+            "aliases": {
+                "Correios": "Cagartner\\CorreiosConsulta\\Facade"
+            }
+        }
+    }
 }
