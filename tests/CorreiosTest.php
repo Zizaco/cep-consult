@@ -30,7 +30,6 @@ class CorreiosTest extends TestCase
             $entrada = array_pop($dados);
 
             $this->assertTrue($entrada['status'] === 'Objeto postado');
-            
         } else {
             // se count($dados) === 0, o teste precisa fazer pelo menos um assert, senão dá erro no phpunit
             $this->assertTrue(1 === 1);
