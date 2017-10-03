@@ -11,8 +11,7 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "cagartner/phpquery": "0.9.8",
-        "phpunit/phpunit": "^6.4@dev"
+        "cagartner/phpquery": "0.9.8"
     },
     "autoload": {
         "psr-0": {
