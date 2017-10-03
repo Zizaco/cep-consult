@@ -9,7 +9,7 @@ class CorreiosConsulta
 {
 
     const FRETE_URL    = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx?WSDL';
-    const CEP_URL      = 'http://m.correios.com.br/movel/buscaCepConfirma.do';
+    const CEP_URL      = 'http://www.buscacep.correios.com.br/sistemas/buscacep/resultadoBuscaCepEndereco.cfm';
     const RASTREIO_URL = 'http://www2.correios.com.br/sistemas/rastreamento/resultado_semcontent.cfm';
 
     private static $tipos = array(
@@ -29,8 +29,8 @@ class CorreiosConsulta
     }
 
     /**
-     * Verifica se é uma solicitação de varios $tipos
-     * 
+     * Verifica se e uma solicitacao de varios $tipos
+     *
      * @param $valor string
      * @return boolean
      */
@@ -49,8 +49,8 @@ class CorreiosConsulta
     }
 
     /**
-     * Retorna todos os códigos em uma linha
-     * 
+     * Retorna todos os codigos em uma linha
+     *
      * @param $valor string
      * @return string
      */
@@ -90,8 +90,8 @@ class CorreiosConsulta
          */
 
         /*
-          1 – Formato caixa/pacote
-          2 – Formato rolo/prisma
+          1 eh Formato caixa/pacote
+          2 eh Formato rolo/prisma
           3 - Envelope
          */
         $dados['cep_destino'] = preg_replace("/[^0-9]/", '', $dados['cep_destino']);
@@ -102,7 +102,7 @@ class CorreiosConsulta
             'exceptions'         => true,
             'compression'        => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP,
             'connection_timeout' => 1000
-                ), $options);
+        ), $options);
 
         $soap = new \SoapClient($endpoint, $options);
 
@@ -160,50 +160,58 @@ class CorreiosConsulta
     public function cep($cep)
     {
         $data = array(
-            'cepEntrada' => $cep,
-            'tipoCep'    => '',
-            'cepTemp'    => '',
-            'metodo'     => 'buscarCep',
+            'relaxation' => $cep,
+            'tipoCEP'    => 'ALL',
+            'semelhante'    => 'N',
         );
 
         $curl = new Curl;
 
         $html = $curl->simple(self::CEP_URL, $data);
 
-        phpQuery::newDocumentHTML($html, $charset = 'utf-8');
+        phpQuery::newDocumentHTML($html, $charset = 'ISO-8859-1');
 
         $pq_form  = phpQuery::pq('');
         //$pq_form = phpQuery::pq('.divopcoes,.botoes',$pq_form)->remove();
         $pesquisa = array();
-        foreach (phpQuery::pq('#frmCep > div') as $pq_div)
-        {
-            if (phpQuery::pq($pq_div)->is('.caixacampobranco') || phpQuery::pq($pq_div)->is('.caixacampoazul'))
+        if(phpQuery::pq('.tmptabela')){
+            $linha = 0;
+            foreach (phpQuery::pq('.tmptabela tr') as $pq_div)
             {
-                $dados            = array();
-                $dados['cliente'] = trim(phpQuery::pq('.resposta:contains("Cliente: ") + .respostadestaque:eq(0)', $pq_div)->text());
+                if($linha){
+                    $itens = array();
+                    foreach (phpQuery::pq('td', $pq_div) as $pq_td){
+                        $children = $pq_td->childNodes;
+                        $innerHTML = '';
+                        foreach ($children as $child) {
+                            $innerHTML .= $child->ownerDocument->saveXML( $child );
+                        }
+                        $texto = preg_replace("/&#?[a-z0-9]+;/i","",$innerHTML);
+                        $itens[] = trim( $texto );
+                    }
+                    $dados = array();
+                    $dados['logradouro'] = trim($itens[0]);
+                    $dados['bairro'] = trim($itens[1]);
+                    $dados['cidade/uf'] = trim($itens[2]);
+                    $dados['cep'] = trim($itens[3]);
 
-                if (count(phpQuery::pq('.resposta:contains("Endereço: ") + .respostadestaque:eq(0)', $pq_div)))
-                    $dados['logradouro'] = trim(phpQuery::pq('.resposta:contains("Endereço: ") + .respostadestaque:eq(0)', $pq_div)->text());
-                else
-                    $dados['logradouro'] = trim(phpQuery::pq('.resposta:contains("Logradouro: ") + .respostadestaque:eq(0)', $pq_div)->text());
-                $dados['bairro']     = trim(phpQuery::pq('.resposta:contains("Bairro: ") + .respostadestaque:eq(0)', $pq_div)->text());
+                    $dados['cidade/uf'] = explode('/', $dados['cidade/uf']);
 
-                $dados['cidade/uf'] = trim(phpQuery::pq('.resposta:contains("Localidade") + .respostadestaque:eq(0)', $pq_div)->text());
-                $dados['cep']       = trim(phpQuery::pq('.resposta:contains("CEP: ") + .respostadestaque:eq(0)', $pq_div)->text());
+                    $dados['cidade'] = trim($dados['cidade/uf'][0]);
 
-                $dados['cidade/uf'] = explode('/', $dados['cidade/uf']);
+                    $dados['uf'] = trim($dados['cidade/uf'][1]);
 
-                $dados['cidade'] = trim($dados['cidade/uf'][0]);
+                    unset($dados['cidade/uf']);
 
-                $dados['uf'] = trim($dados['cidade/uf'][1]);
+                    $pesquisa = $dados;
+                }
 
-                unset($dados['cidade/uf']);
-
-                $pesquisa = $dados;
+                $linha++;
             }
         }
         return $pesquisa;
     }
+
 
     public function rastrear($codigo)
     {
