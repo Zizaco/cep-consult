@@ -10,7 +10,7 @@ class CorreiosConsulta
 
     const FRETE_URL    = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx?WSDL';
     const CEP_URL      = 'http://www.buscacep.correios.com.br/sistemas/buscacep/resultadoBuscaCepEndereco.cfm';
-    const RASTREIO_URL = 'http://www2.correios.com.br/sistemas/rastreamento/resultado_semcontent.cfm';
+    const RASTREIO_URL = 'https://www2.correios.com.br/sistemas/rastreamento/resultado_semcontent.cfm';
 
     private static $tipos = array(
         'sedex'          => '04014',
