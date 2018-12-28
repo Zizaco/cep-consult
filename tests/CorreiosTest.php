@@ -26,7 +26,7 @@ class CorreiosTest extends TestCase
     {
         $correios = new CorreiosConsulta();
         $dados = $correios->rastrear('PO683612101BR');
-        if (count($dados) > 0) {
+        if (is_array($dados) && count($dados) > 0) {
             $entrada = array_pop($dados);
 
             $this->assertTrue($entrada['status'] === 'Objeto postado');
