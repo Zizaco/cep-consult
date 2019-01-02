@@ -190,16 +190,16 @@ class CorreiosConsulta
                         $itens[] = trim( $texto );
                     }
                     $dados = array();
-                    $dados['logradouro'] = trim($itens[0]);
-                    $dados['bairro'] = trim($itens[1]);
-                    $dados['cidade/uf'] = trim($itens[2]);
-                    $dados['cep'] = trim($itens[3]);
+                    $dados['logradouro'] = trim($itens[0], " \t\n\r\0\x0B\xc2\xa0");
+                    $dados['bairro'] = trim($itens[1], " \t\n\r\0\x0B\xc2\xa0");
+                    $dados['cidade/uf'] = trim($itens[2], " \t\n\r\0\x0B\xc2\xa0");
+                    $dados['cep'] = trim($itens[3], " \t\n\r\0\x0B\xc2\xa0");
 
                     $dados['cidade/uf'] = explode('/', $dados['cidade/uf']);
 
-                    $dados['cidade'] = trim($dados['cidade/uf'][0]);
+                    $dados['cidade'] = trim($dados['cidade/uf'][0], " \t\n\r\0\x0B\xc2\xa0");
 
-                    $dados['uf'] = trim($dados['cidade/uf'][1]);
+                    $dados['uf'] = trim($dados['cidade/uf'][1], " \t\n\r\0\x0B\xc2\xa0");
 
                     unset($dados['cidade/uf']);
 
