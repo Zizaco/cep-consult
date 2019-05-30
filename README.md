@@ -1,9 +1,9 @@
 # CorreiosConsulta (Laravel 4/5 Package)
 
 ----------------------
-Package para consulta de serviços diretamente no site dos correios, sem usar apis de terceiros.
+Package para consulta de serviÃ§os diretamente no site dos correios, sem usar apis de terceiros.
 
-Baseado nos seguintes repositórios:
+Baseado nos seguintes repositÃ³rios:
 - https://github.com/feliperoberto/correios-cep
 - https://github.com/Zizaco/cep-consult
 
@@ -12,12 +12,12 @@ Requerimentos:
 
 Para linux: `sudo apt-get install php-soap`
 
-Consultas disponíveis:
+Consultas disponÃ­veis:
 - CEP
 - Frete
 - Rastreio
 
-### Instalação
+### InstalaÃ§Ã£o
 
 In the `require` key of `composer.json` file add the following
 
@@ -53,11 +53,11 @@ Then at the end of `config/app.php` add `'Correios'    => 'Cagartner\CorreiosCon
 ],
 ```
 
-### Utilização
+### UtilizaÃ§Ã£o
 
 #### CEP:
 
-Passar apenas o valor do CEP, pode ser formatado, somente números e como string.
+Passar apenas o valor do CEP, pode ser formatado, somente nÃºmeros e como string.
 
 ```php
 <?php
@@ -80,7 +80,7 @@ Passar apenas o valor do CEP, pode ser formatado, somente números e como string.
 
 #### Rastrear
 
-Passar o código de rastreio informado pelos Correios
+Passar o cÃ³digo de rastreio informado pelos Correios
 
 ```php
 <?php
@@ -101,7 +101,7 @@ Passar o código de rastreio informado pelos Correios
                 (
                     [data] => 08/06/2015 07:59
                     [local] => Caraguatatuba/SP
-                    [status] => Saiu para entrega ao destinatário
+                    [status] => Saiu para entrega ao destinatï¿½rio
                 )
 
             [2] => Array
@@ -109,7 +109,7 @@ Passar o código de rastreio informado pelos Correios
                     [data] => 03/06/2015 11:48
                     [local] => CTE SAO JOSE DOS CAMPOS - Sao Jose Dos Campos/SP
                     [status] => Encaminhado
-                    [encaminhado] => Em trânsito para CDD CARAGUATATUBA - Caraguatatuba/SP
+                    [encaminhado] => Em trï¿½nsito para CDD CARAGUATATUBA - Caraguatatuba/SP
                 )
 
             [3] => Array
@@ -117,7 +117,7 @@ Passar o código de rastreio informado pelos Correios
                     [data] => 02/06/2015 10:00
                     [local] => AGF DOUTOR JOAO MENDES - Sao Paulo/SP
                     [status] => Encaminhado
-                    [encaminhado] => Em trânsito para CTE VILA MARIA - Sao Paulo/SP
+                    [encaminhado] => Em trï¿½nsito para CTE VILA MARIA - Sao Paulo/SP
                 )
 
             [4] => Array
@@ -132,31 +132,31 @@ Passar o código de rastreio informado pelos Correios
 
 ```
 
-#### Cálculo de Frete:
+#### CÃ¡lculo de Frete:
 
 ```php
 <?php
     $dados = [
-        'tipo'              => 'sedex', // Separar opções por vírgula (,) caso queira consultar mais de um (1) serviço. > Opções: `sedex`, `sedex_a_cobrar`, `sedex_10`, `sedex_hoje`, `pac`, 'pac_contrato', 'sedex_contrato' , 'esedex'
-        'formato'           => 'caixa', // opções: `caixa`, `rolo`, `envelope`
-        'cep_destino'       => '89062086', // Obrigatório
+        'tipo'              => 'sedex', // Separar opÃ§Ãµes por vÃ­rgula (,) caso queira consultar mais de um (1) serviÃ§o. > OpÃ§Ãµes: `sedex`, `sedex_a_cobrar`, `sedex_10`, `sedex_hoje`, `pac`, 'pac_contrato', 'sedex_contrato' , 'esedex'
+        'formato'           => 'caixa', // opÃ§Ãµes: `caixa`, `rolo`, `envelope`
+        'cep_destino'       => '89062086', // ObrigatÃ³rio
         'cep_origem'        => '89062080', // Obrigatorio
-        //'empresa'         => '', // Código da empresa junto aos correios, não obrigatório.
-        //'senha'           => '', // Senha da empresa junto aos correios, não obrigatório.
+        //'empresa'         => '', // CÃ³digo da empresa junto aos correios, nÃ£o obrigatÃ³rio.
+        //'senha'           => '', // Senha da empresa junto aos correios, nÃ£o obrigatÃ³rio.
         'peso'              => '1', // Peso em kilos
-        'comprimento'       => '16', // Em centímetros
-        'altura'            => '11', // Em centímetros
-        'largura'           => '11', // Em centímetros
-        'diametro'          => '0', // Em centímetros, no caso de rolo
-        // 'mao_propria'       => '1', // Não obrigatórios
-        // 'valor_declarado'   => '1', // Não obrigatórios
-        // 'aviso_recebimento' => '1', // Não obrigatórios
+        'comprimento'       => '16', // Em centÃ­metros
+        'altura'            => '11', // Em centÃ­metros
+        'largura'           => '11', // Em centÃ­metros
+        'diametro'          => '0', // Em centÃ­metros, no caso de rolo
+        // 'mao_propria'       => '1', // NÃ¡o obrigatÃ³rios
+        // 'valor_declarado'   => '1', // NÃ¡o obrigatÃ³rios
+        // 'aviso_recebimento' => '1', // NÃ¡o obrigatÃ³rios
     ];
 
     echo Correios::frete($dados);
     
     /*
-        Retorno para uma única consulta:
+        Retorno para uma Ãºnica consulta:
         Array
         (
             [codigo] => 40010
@@ -176,7 +176,7 @@ Passar o código de rastreio informado pelos Correios
     */
 
     /*
-        Retorno para várias consultas:
+        Retorno para vÃ¡rias consultas:
         Array
         (
             0 => Array
