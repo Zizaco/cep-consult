@@ -251,7 +251,7 @@ class CorreiosConsulta
      */
     protected function cleanMoney($value)
     {
-        return (float) str_replace(',', '.', $value);
+        return (float) str_replace(',', '.', str_replace('.', '', $value));
     }
 
     /**
