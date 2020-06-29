@@ -1,5 +1,5 @@
 {
-    "name": "brunobacha/correios-consulta",
+    "name": "cagartner/correios-consulta",
     "description": "Package para pesquisa de serviços de busca por cep, calculo de frete e etc, diretamente nos serviços dos Correios.",
     "keywords": ["cep","brazil","laravel","frete"],
     "license": "MIT",
