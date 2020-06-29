@@ -128,7 +128,7 @@ class CorreiosConsulta
                     'valor_declarado' => self::cleanMoney($rate->ValorValorDeclarado),
                     'entrega_domiciliar' => $rate->EntregaDomiciliar === 'S',
                     'entrega_sabado' => $rate->EntregaSabado === 'S',
-                    'erro' => array('codigo' => (real) $rate->Erro, 'mensagem' => (real) $rate->MsgErro),
+                    'erro' => array('codigo' => (float) $rate->Erro, 'mensagem' => $rate->MsgErro),
                 );
             }
 
@@ -222,7 +222,7 @@ class CorreiosConsulta
                 list($data, $hora, $local) = explode("<br>", phpQuery::pq($tr)->find('td:eq(0)')->html());
                 list($status, $encaminhado) = explode("<br>", phpQuery::pq($tr)->find('td:eq(1)')->html());
 
-                $rastreamento[] = array('data' => trim($data) . " " . trim($hora), 'local' => trim($local), 'status' => trim(strip_tags($status)));
+                $rastreamento[] = array('data' => strip_tags(trim($data)) . " " . strip_tags(trim($hora)), 'local' => strip_tags(trim($local)), 'status' => strip_tags(trim($status)));
 
                 if (trim($encaminhado)) {
                     $rastreamento[count($rastreamento) - 1]['encaminhado'] = trim($encaminhado);
