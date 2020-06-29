@@ -22,6 +22,9 @@ Consultas disponíveis:
 In the `require` key of `composer.json` file add the following
 
     "cagartner/correios-consulta": "0.1.*"
+    
+## Para PHP 7.3 + usar:
+    "cagartner/correios-consulta": "0.2.*"
 
 Run the Composer update comand
 
