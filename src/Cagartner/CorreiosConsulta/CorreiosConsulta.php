@@ -173,7 +173,7 @@ class CorreiosConsulta
                             $innerHTML .= $child->ownerDocument->saveXML($child);
                         }
                         $texto = preg_replace("/&#?[a-z0-9]+;/i", "", $innerHTML);
-                        $itens[] = trim($texto);
+                        $itens[] = preg_replace(['(\s+)u', '(^\s|\s$)u'], [' ', ''], $texto);
                     }
                     $dados = array();
                     $dados['logradouro'] = trim($itens[0]);
