@@ -121,6 +121,7 @@ class CorreiosConsulta
 
                 $return[] = [
                     'codigo'             => (int)$rate->Codigo,
+                    'tipo'               => ucfirst(str_replace('_', '', self::getTipoIndex($rate->Codigo))),
                     'valor'              => self::cleanMoney($rate->Valor),
                     'prazo'              => self::cleanInteger($rate->PrazoEntrega),
                     'mao_propria'        => self::cleanMoney($rate->ValorMaoPropria),
