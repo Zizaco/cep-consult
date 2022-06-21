@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=7.3.0",
-        "cagartner/phpquery": "0.9.12"
+        "cagartner/phpquery": "0.9.13"
     },
     "autoload": {
         "psr-0": {
