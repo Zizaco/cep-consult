@@ -1,4 +1,4 @@
-<?php namespace Zizaco\CepConsult;
+<?php namespace Cagartner\CorreiosConsulta;
 
 class Curl
 {
@@ -40,5 +40,39 @@ class Curl
         }
 
         return $data;
+    }
+
+    /**
+     * Adicionado classe de consulta simples de acordo com a classe originária:
+     * @link https://github.com/feliperoberto/correios-cep/blob/master/correios.class.php
+     *
+     * @param  string $url  $url da busca
+     * @param  array  $post Dados via POST
+     * @param  array  $get  Dados via GET
+     * @return string
+     */
+    public function simple($url, $post=array(), $get=array())
+    {
+        $url = explode('?', $url, 2);
+
+        if(count($url)===2){
+            $temp_get = array();
+            parse_str($url[1], $temp_get);
+            $get = array_merge($get, $temp_get);
+        }
+
+        //die($url[0]."?".http_build_query($get));
+        $ch = curl_init($url[0]."?".http_build_query($get));
+
+        curl_setopt ($ch, CURLOPT_POST, 1);
+        curl_setopt ($ch, CURLOPT_POSTFIELDS, http_build_query($post));
+        curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec ($ch);
+
+        curl_close($ch);
+
+        return $response;
     }
 }
